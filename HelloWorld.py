@@ -1,5 +1,5 @@
 print("Hello, World!")
-# pip install playsound
+# pip install pydub
 # pip install pywinauto
 # pip install re
 # somehow fixes issue?
