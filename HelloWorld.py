@@ -36,8 +36,11 @@ playsound("./notifSound.mp3")
 
 # stop
 
+
 lastText = app.top_window().StatusBar.children()[0].window_text()
 currText = ""
+
+print("started monitoring @ ", time.asctime())
 
 while(app.top_window().exists()):
     try:
@@ -53,7 +56,7 @@ while(app.top_window().exists()):
 
     if((not isScanningStatus(currText)) and (isScanningStatus(lastText))):
         playsound("./notifSound.mp3")
-        print("finished scanning @ " + time.asctime)
+        print("finished scanning @ ", time.asctime())
     
     
     time.sleep(1)
