@@ -1,4 +1,5 @@
 # will need git & python installed
+# and C++ build tools
 pip install playsound
 pip install pywinauto
 # pip install re
