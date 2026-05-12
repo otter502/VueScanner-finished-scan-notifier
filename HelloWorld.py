@@ -49,7 +49,7 @@ while(app.top_window().exists()):
     # if last text contained "save" or "scan" and curr text does not?
 
     def isScanningStatus(s):
-        return (s.startswith("scan")) or ("save" in s)
+        return (s.lower().startswith("scan")) or ("save" in s.lower())
 
     if((not isScanningStatus(currText)) and (isScanningStatus(lastText))):
         playsound("./notifSound.mp3")
