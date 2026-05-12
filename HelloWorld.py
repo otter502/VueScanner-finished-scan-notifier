@@ -1,9 +1,9 @@
 print("Hello, World!")
-# pip install pydub
+# pip install playsound3
 # pip install pywinauto
 # pip install re
 # somehow fixes issue?
-# pip install simpleaudio 
+
 
 import pywinauto
 import time
@@ -26,12 +26,12 @@ app = pwa_app.connect(handle = w_handle[0])
 
 "Scan ..."
 
-from pydub import AudioSegment
-from pydub import playback;
 
-notifSound = AudioSegment.from_mp3("./notifSound.mp3")
-print('playing sound using pydub')
-playback.play(notifSound)
+from playsound3 import playsound
+
+# notifSound = AudioSegment.from_mp3()
+print('playing sound using playsound3')
+playsound("./notifSound.mp3")
 # (soundBite)
 
 # stop
@@ -52,7 +52,7 @@ while(app.top_window().exists()):
         return ("save" in s) or ("scan" in s)
 
     if((not isScanningStatus(currText)) and (isScanningStatus(lastText))):
-        playback.play(notifSound)
+        playsound("./notifSound.mp3")
         print("finished scanning @ " + time.asctime)
     
     
