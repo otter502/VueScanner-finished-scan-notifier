@@ -47,7 +47,7 @@ while(app.top_window().exists()):
         currText = app.top_window().StatusBar.children()[0].window_text()
     except:
         currText = lastText
-        print("error pls fix!")
+        print("error pls fix! @ ", time.asctime())
     
     # if last text contained "save" or "scan" and curr text does not?
 
