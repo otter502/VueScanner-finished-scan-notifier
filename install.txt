@@ -1,6 +1,5 @@
 # will need git & python installed
 # and C++ build tools
-pip install pydub
 pip install pywinauto
 # pip install re
 pip install simpleaudio3
