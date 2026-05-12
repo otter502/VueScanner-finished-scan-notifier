@@ -2,4 +2,4 @@
 # and C++ build tools
 pip install pywinauto
 # pip install re
-pip install simpleaudio3
+pip install playsound3
