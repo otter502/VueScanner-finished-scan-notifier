@@ -3,4 +3,4 @@
 pip install pydub
 pip install pywinauto
 # pip install re
-pip install simpleaudio 
+pip install simpleaudio3
