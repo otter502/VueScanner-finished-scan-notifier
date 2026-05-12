@@ -57,6 +57,6 @@ while(app.top_window().exists()):
     if((not isScanningStatus(currText)) and (isScanningStatus(lastText))):
         playsound("./notifSound.mp3")
         print("finished scanning @ ", time.asctime())
-    
-    
+
+    lastText = currText
     time.sleep(1)
