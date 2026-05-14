@@ -66,7 +66,7 @@ while(app.top_window().exists()):
         
     if((isScanningStatus(currText) > 0) and (isScanningStatus(lastText) == 0)):
         if (isScanningStatus(currText) == 2):
-            print("startedd previewing @ ", time.asctime())
+            print("started previewing @ ", time.asctime())
         if (isScanningStatus(currText) == 1):
             print("started scanning @ ", time.asctime())
 
