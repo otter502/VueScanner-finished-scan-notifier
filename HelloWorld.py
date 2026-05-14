@@ -37,7 +37,7 @@ playsound("./notifSound.mp3")
 # stop
 
 
-lastText = app.top_window().StatusBar.children()[0].window_text()
+lastText = ""
 currText = ""
 
 print("started monitoring @ ", time.asctime())
