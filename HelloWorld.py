@@ -51,12 +51,24 @@ while(app.top_window().exists()):
     
     # if last text contained "save" or "scan" and curr text does not?
 
+    # neither = 0
+    # scanning = 1
+    # previewing = 2
     def isScanningStatus(s):
-        return (s.lower().startswith("scan")) or ("save" in s.lower()) or (s.lower().startswith("preview"))
+        return (1 if (s.lower().startswith("scan") or ("save" in s.lower())) else 0) + (2 if (s.lower().startswith("preview")) else 0)
 
-    if((not isScanningStatus(currText)) and (isScanningStatus(lastText))):
+    if((isScanningStatus(currText) == 0) and (isScanningStatus(lastText) > 0)):
         playsound("./notifSound.mp3")
-        print("finished scanning @ ", time.asctime())
+        if (isScanningStatus(lastText) == 2):
+            print("finished previewing @ ", time.asctime())
+        if (isScanningStatus(lastText) == 1):
+            print("finished scanning @ ", time.asctime())
+        
+    if((isScanningStatus(currText) > 0) and (isScanningStatus(lastText) == 0)):
+        if (isScanningStatus(currText) == 2):
+            print("startedd previewing @ ", time.asctime())
+        if (isScanningStatus(currText) == 1):
+            print("started scanning @ ", time.asctime())
 
     lastText = currText
     time.sleep(1)
