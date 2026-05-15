@@ -47,10 +47,10 @@ try:
     while(app.top_window().exists()):
         try:
             currText = app.top_window().StatusBar.children()[0].window_text()
-        except:
+        except Exception as e:
             currText = lastText
             print("error pls fix! @ ", time.asctime(), "\n", currText, " : ", lastText, " : ", scanStatus)
-        
+            print(e)
         # if last text contained "save" or "scan" and curr text does not?
 
         # neither = 0
@@ -81,6 +81,7 @@ try:
 
         lastText = currText
         time.sleep(1)
-except:
+except Exception as e:
     print("fatal error pls fix! @ ", time.asctime(), "\n", currText, " : ", lastText, " : ", scanStatus)
+    print(e)
 
