@@ -39,6 +39,7 @@ playsound("./notifSound.mp3")
 
 lastText = ""
 currText = ""
+scanStatus = 0
 
 print("started monitoring @ ", time.asctime())
 
@@ -47,7 +48,7 @@ while(app.top_window().exists()):
         currText = app.top_window().StatusBar.children()[0].window_text()
     except:
         currText = lastText
-        print("error pls fix! @ ", time.asctime())
+        print("error pls fix! @ ", time.asctime(), "\n", currText, " : ", lastText, " : ", scanStatus)
     
     # if last text contained "save" or "scan" and curr text does not?
 
@@ -57,18 +58,24 @@ while(app.top_window().exists()):
     def isScanningStatus(s):
         return (1 if (s.lower().startswith("scan") or ("save" in s.lower())) else 0) + (2 if (s.lower().startswith("preview")) else 0)
 
-    if((isScanningStatus(currText) == 0) and (isScanningStatus(lastText) > 0)):
-        playsound("./notifSound.mp3")
-        if (isScanningStatus(lastText) == 2):
-            print("finished previewing @ ", time.asctime())
-        if (isScanningStatus(lastText) == 1):
-            print("finished scanning @ ", time.asctime())
-        
-    if((isScanningStatus(currText) > 0) and (isScanningStatus(lastText) == 0)):
+    if (isScanningStatus(currText) == 0 and scanStatus != 0): # something finished!
+            playsound("./notifSound.mp3")
+            if (scanStatus == 2):
+                print("finished previewing @ ", time.asctime())
+            if (scanStatus == 1):
+                print("finished scanning @ ", time.asctime())
+            scanStatus = 0
+
+
+
+    if (isScanningStatus(currText)!= 0 and scanStatus == 0): # something started!
         if (isScanningStatus(currText) == 2):
             print("started previewing @ ", time.asctime())
         if (isScanningStatus(currText) == 1):
             print("started scanning @ ", time.asctime())
+        
+
+
 
     lastText = currText
     time.sleep(1)
