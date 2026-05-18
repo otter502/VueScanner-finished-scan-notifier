@@ -18,7 +18,7 @@ class CustomException(Exception):
 
 def getWindowText(queue):
     if debug: print("\tgetting text")
-    w_handle = pywinauto.findwindows.find_windows(class_name_re=r'wx.+')
+    w_handle = pywinauto.findwindows.find_windows(title_name_re=r'Vue.+')
     if debug: print("\tstep1")
     app = pwa_app.connect(handle = w_handle[0], timeout = 2.5)
     if debug: print("\tstep2")
