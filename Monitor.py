@@ -17,9 +17,11 @@ class CustomException(Exception):
         print( 'custom exception occurred')
 
 def getWindowText(queue):
+    if debug: print("getting text")
     w_handle = pywinauto.findwindows.find_windows(title_re=r'Vue.+')
     app = pwa_app.connect(handle = w_handle[0])
     statusBarText = app.top_window().StatusBar.children()[0]
+    if debug: print("made status bar")
     #clear error status
 
     if not app.top_window().exists():
@@ -27,6 +29,7 @@ def getWindowText(queue):
     elif not statusBarText:
         queue.put("!statusBar does not exist")
     else:
+        if debug: print("grabbing data")
         queue.put("#" + statusBarText.window_text().lower().strip())
 
 
