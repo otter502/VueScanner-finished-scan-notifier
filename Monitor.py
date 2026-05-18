@@ -67,7 +67,7 @@ if __name__ == '__main__':
                 p.terminate()
                 p.join()
                 print('process took too long')
-                if(q.empty): continue
+                if(q.empty): q.put("none!") # let's see what this does!
 
             result = q.get(block=True, timeout=timeoutTime)
             
