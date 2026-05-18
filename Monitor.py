@@ -19,7 +19,7 @@ class CustomException(Exception):
 def getWindowText(queue):
     if debug: print("\tgetting text")
     w_handle = pywinauto.findwindows.find_windows(title_re=r'Vue.+')
-    app = pwa_app.connect(handle = w_handle[0])
+    app = pwa_app.connect(handle = w_handle[0], timeout = 2.5)
     statusBarText = app.top_window().StatusBar.children()[0]
     if debug: print("\tmade status bar")
     #clear error status
