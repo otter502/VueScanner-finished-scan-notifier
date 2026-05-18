@@ -47,6 +47,8 @@ try:
     while(app.top_window().exists()):
         try:
             currText = app.top_window().StatusBar.children()[0].window_text()
+        except KeyboardInterrupt:
+            break
         except Exception as e:
             currText = lastText
             print("error pls fix! @ ", time.asctime(), "\n", currText, " : ", lastText, " : ", scanStatus)
