@@ -6,9 +6,7 @@ from playsound3 import playsound
 import multiprocessing as mp
 
 pwa_app = pywinauto.application.Application(backend="uia")
-w_handle = pywinauto.findwindows.find_windows(title_re=r'Vue.+')
-app = pwa_app.connect(handle = w_handle[0])
-statusBarText = app.top_window().StatusBar.children()[0]
+
 
 timeoutTime = 5 # 5 second timeout
 
@@ -18,6 +16,9 @@ class CustomException(Exception):
         print( 'custom exception occurred')
 
 def getWindowText(queue):
+    w_handle = pywinauto.findwindows.find_windows(title_re=r'Vue.+')
+    app = pwa_app.connect(handle = w_handle[0])
+    statusBarText = app.top_window().StatusBar.children()[0]
     #clear error status
 
     if not app.top_window().exists():
@@ -57,7 +58,7 @@ if __name__ == '__main__':
     print("Starting monitoring @ ", time.asctime())
 
     try: 
-        while app.top_window().exists():
+        while True:
             p = mp.Process(target = getWindowText, args=(q,))
             p.start()
 
