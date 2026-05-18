@@ -43,14 +43,17 @@ scanStatus = 0
 
 print("started monitoring @ ", time.asctime())
 
+relaventapp = app.top_window().StatusBar.children[0]
+
 try:
     while(app.top_window().exists()):
         try:
-            currText = app.top_window().StatusBar.children()[0].window_text()
+            if relaventapp.exists():
+                currText = relaventapp.window_text()
         except KeyboardInterrupt:
             break
         except Exception as e:
-            currText = lastText
+            # currText = lastText
             print("error pls fix! @ ", time.asctime(), "\n", currText, " : ", lastText, " : ", scanStatus)
             print(e)
         # if last text contained "save" or "scan" and curr text does not?
