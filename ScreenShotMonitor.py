@@ -60,7 +60,6 @@ if __name__ == '__main__':
     print("waiting for alt+2")
     keyboard.wait("alt+2")
     pos2 = pyautogui.position()
-    print("positions: \n" + pos1 + "\n" + pos2)
     def takeScreenshot():
         image = pyscreenshot.grab(bbox=(pos1.x, pos1.y, pos2.x, pos2.y))
         image.save(filename)
