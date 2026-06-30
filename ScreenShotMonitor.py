@@ -82,7 +82,7 @@ if __name__ == '__main__':
         takeScreenshot()
         data = (pytesseract.image_to_string(filename))
         currentState = interpretText(data)
-        # print("text in image:" + data)
+        print("text in image:" + data.strip())
 
         if handleOutput(previousState, currentState):
             print("text: " + data)
