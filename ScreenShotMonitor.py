@@ -71,6 +71,7 @@ if __name__ == '__main__':
 
     print("waiting for alt+3 to confirm placement & text")
     keyboard.wait("alt+3")
+    print("starting watching")
 
     previousState = 0
 
