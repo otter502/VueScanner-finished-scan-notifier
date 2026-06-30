@@ -9,6 +9,7 @@ pip install PIL # just in case!
 '''
 
 import time
+import re
 from PIL import Image
 import pyscreenshot
 import pyautogui
@@ -37,10 +38,8 @@ def handleOutput(prevState, currState):
         return True
 
 def interpretText(text: str):
+    text = re.sub('[^a-z]', '', text.lower())
     text = text.strip().lower()
-    text = text.replace("'", "")
-    text = text.replace("\"", "")
-    text = text.replace("|", "")
 
     if (text.startswith("scan") or "save" in text):
         return 1 # actively scanning
