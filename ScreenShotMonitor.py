@@ -70,7 +70,6 @@ if __name__ == '__main__':
     image.show()
 
     data = (pytesseract.image_to_string(filename))
-    print(data.strip())
     print("text read from image: " + data)
 
     print("waiting for alt+3 to confirm placement & text")
