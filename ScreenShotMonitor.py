@@ -19,6 +19,7 @@ from playsound3 import playsound
 
 loopDelay = 3 # 3 seconds
 filename = "screenshot.png"
+debug = True
 
 def handleOutput(prevState, currState):
     currTime = time.asctime()
@@ -80,7 +81,7 @@ if __name__ == '__main__':
         takeScreenshot()
         data = (pytesseract.image_to_string(filename))
         currentState = interpretText(data)
-        print("text in image:" + data.strip())
+        if(debug): print("text:" + data.strip())
 
         if handleOutput(previousState, currentState):
             print("text: " + data)
