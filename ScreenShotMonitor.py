@@ -38,7 +38,7 @@ def interpretText(text: str):
     text = text.replace("'", "")
     text = text.replace("\"", "")
     text = text.replace("|", "")
-    
+
     if   (text.startswith("scan") or "save" in text):
         return 1 # actively scanning
     elif (text.startswith("preview")):
@@ -78,7 +78,7 @@ if __name__ == '__main__':
         takeScreenshot()
         data = (pytesseract.image_to_string(filename))
         currentState = interpretText(data)
-        print("text in image:" + data)
+        # print("text in image:" + data)
 
         handleOutput(previousState, currentState)
 
