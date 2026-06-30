@@ -23,15 +23,18 @@ def handleOutput(prevState, currState):
     currTime = time.asctime()
 
     if prevState == currState:
-        return # nothing happened!
+        return False # nothing happened!
     if (prevState == 0):
         print("Started ", "scanning" if currState == 1 else "previewing", " @ ", currTime)
+        return True
     elif (currState == 0):
         playsound("./notifSound.mp3")
         print("Finished ", "scanning" if prevState == 1 else "previewing", " @ ", currTime)
+        return True
     else:
         playsound("./errorSound.mp3")
         print("Went from ", "scanning" if prevState == 1 else "previewing", " to ", "scanning" if currState == 1 else "previewing", " @ ", currTime)
+        return True
 
 def interpretText(text: str):
     text = text.strip().lower()
@@ -39,7 +42,7 @@ def interpretText(text: str):
     text = text.replace("\"", "")
     text = text.replace("|", "")
 
-    if   (text.startswith("scan") or "save" in text):
+    if (text.startswith("scan") or "save" in text):
         return 1 # actively scanning
     elif (text.startswith("preview")):
         return 2 # actively previewing
@@ -67,6 +70,7 @@ if __name__ == '__main__':
     image.show()
 
     data = (pytesseract.image_to_string(filename))
+    print(data.strip())
     print("text read from image: " + data)
 
     print("waiting for alt+3 to confirm placement & text")
@@ -81,7 +85,8 @@ if __name__ == '__main__':
         currentState = interpretText(data)
         # print("text in image:" + data)
 
-        handleOutput(previousState, currentState)
+        if handleOutput(previousState, currentState):
+            print("text: " + data)
 
         previousState = currentState
         time.sleep(loopDelay)
