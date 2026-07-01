@@ -19,7 +19,7 @@ from playsound3 import playsound
 
 loopDelay = 3 # 3 seconds
 filename = "screenshot.png"
-debug = True
+debug = False
 
 def handleOutput(prevState, currState):
     currTime = time.asctime()
